@@ -1,9 +1,18 @@
-const timer = (deadline) => {
-    const timerDays = document.querySelectorAll('.count-wrap > .count_1 > span')
-    const timerHours = document.querySelectorAll('.count-wrap > .count_2 > span')
-    const timerMinutes = document.querySelectorAll('.count-wrap > .count_3 > span')
-    const timerSeconds = document.querySelectorAll('.count-wrap > .count_4 > span')
+const timer = (discount) => {
+    const timerDaysBoxs = document.querySelectorAll('.count_1')
+    const timerHoursBoxs = document.querySelectorAll('.count_2')
+    const timerMinutesBoxs = document.querySelectorAll('.count_3')
+    const timerSecondsBoxs = document.querySelectorAll('.count_4')
 
+    const timerDaysBoxF = timerDaysBoxs[0]
+    const timerHoursBoxF = timerHoursBoxs[0]
+    const timerMinutesBoxF = timerMinutesBoxs[0]
+    const timerSecondsBoxF = timerSecondsBoxs[0]
+    
+    const timerDays = timerDaysBoxF.lastElementChild
+    const timerHours = timerHoursBoxF.lastElementChild
+    const timerMinutes = timerMinutesBoxF.lastElementChild
+    const timerSeconds = timerSecondsBoxF.lastElementChild
 
     let intervalID
 
@@ -20,60 +29,47 @@ const timer = (deadline) => {
     }
 
     const updateClock = () => {
-        let getTime = getTimeRemaining(deadline)
-        const zeroToNumber = () => {
-            timerDays.forEach(timerDays => {
-                if (getTime.days < 10) {
-                    timerDays.textContent = '0' + getTime.days
-                }
-            })
-            timerHours.forEach(timerHours => {
-                if (getTime.hours < 10) {
-                    timerHours.textContent = '0' + getTime.hours
-                }
-            })
-            timerMinutes.forEach(timerMinutes => {
-                if (getTime.minutes < 10) {
-                    timerMinutes.textContent = '0' + getTime.minutes
-                }
-            })
-            timerSeconds.forEach(timerSeconds => {
-                if (getTime.seconds < 10) {
-                    timerSeconds.textContent = '0' + getTime.seconds
-                }
-            })
-        }
+        let getTime = getTimeRemaining(discount)
 
-        if (getTime.days < 10 && getTime.days >= 0) {
-            timerDays.textContent = '0' + getTime.days
-        } 
-        if (getTime.hours < 10 && getTime.days >= 0) {
-            timerHours.textContent = '0' + getTime.hours
-        }
-        if (getTime.minutes < 10 && getTime.days >= 0) {
-            timerMinutes.textContent = '0' + getTime.minutes
-        }
-        if (getTime.seconds < 10 && getTime.days >= 0) {
-            timerSeconds.textContent = '0' + getTime.seconds
-        }
-        
-        zeroToNumber()
+        timerDays.textContent = getTime.days
+        timerHours.textContent = getTime.hours
+        timerMinutes.textContent = getTime.minutes
+        timerSeconds.textContent = getTime.seconds
 
-        if (getTime.timeRemaining < 0) {
-            clearInterval(intervalID)
+        if (getTime.timeRemaining > 0) {
+            intervalID = setInterval(() => {
+                            updateClock()
+                        }, 1000);
+        } else if (getTime.timeRemaining <= 0) {
             timerDays.textContent = '00'
             timerHours.textContent = '00'
             timerMinutes.textContent = '00'
             timerSeconds.textContent = '00'
+            clearInterval(intervalID)
         }
-        
+        const zeroToNumber = () => {
+            if (getTime.days < 10 && getTime.days >= 0) {
+                timerDays.textContent = '0' + getTime.days
+            } 
+            if (getTime.hours < 10 && getTime.days >= 0) {
+                timerHours.textContent = '0' + getTime.hours
+            }
+            if (getTime.minutes < 10 && getTime.days >= 0) {
+                timerMinutes.textContent = '0' + getTime.minutes
+            }
+            if (getTime.seconds < 10 && getTime.days >= 0) {
+                timerSeconds.textContent = '0' + getTime.seconds
+            }
+        }
+        const timeEqualify = () => {
+            timerDaysBoxs[1].lastElementChild.textContent = timerDays.textContent
+            timerHoursBoxs[1].lastElementChild.textContent = timerHours.textContent
+            timerMinutesBoxs[1].lastElementChild.textContent = timerMinutes.textContent
+            timerSecondsBoxs[1].lastElementChild.textContent = timerSeconds.textContent
+        }
+        zeroToNumber()
+        timeEqualify()
     }
-    
-    intervalID = setInterval(() => {
-        updateClock()
-    }, 1000);
+    updateClock()
 }
-
-
-
 export default timer
