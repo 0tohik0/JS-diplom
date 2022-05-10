@@ -1,28 +1,36 @@
 const modal = () => {
-    const headerModal = document.querySelector('.header-modal')
-    const serviceModal = document.querySelector('.services-modal')
     const overlay = document.querySelector('.overlay')
 
-    const close = document.querySelectorAll('[title="Close"]')
-    const fancy = document.querySelectorAll('.fancyboxModal')
+    const headerModalContent = document.querySelector('.header-modal')
+    const servicesModal = document.querySelector('.services-modal')
 
-    fancy.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            if (btn.hash === '#callback') {
-                headerModal.style.display = 'block'
-                overlay.style.display = 'block'
-            } else if (btn.hash === '#application') {
-                serviceModal.style.display = 'block'
-                overlay.style.display = 'block'
-            }
-        })
-    })
-    close.forEach(btn => {
-        btn.addEventListener('click', () => {
-            headerModal.style.display = ''
-            overlay.style.display = ''
-            serviceModal.style.display = ''
-        })
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.header-modal') && e.target.closest('.overlay')) {
+            overlay.style.display = ""
+            headerModalContent.style.display = ""
+        } else if (e.target.closest('.header-modal__close')) {
+            overlay.style.display = ""
+            headerModalContent.style.display = ""
+        } else if (e.target.closest('.button > .fancyboxModal')) {
+            overlay.style.display = "block"
+            headerModalContent.style.display = "block"
+        }
+
+        if (e.target.closest('.utp-button > .fancyboxModal')) {
+            overlay.style.display = "block"
+            servicesModal.style.display = "block"
+        }
+        
+        if (e.target.closest('.service-button > .fancyboxModal')) {
+            overlay.style.display = "block"
+            servicesModal.style.display = "block"
+        } else if (e.target.closest('.services-modal__close')) {
+            overlay.style.display = ""
+            servicesModal.style.display = ""
+        } else if (!e.target.closest('.services-modal')  && e.target.closest('.overlay')) {
+            overlay.style.display = ""
+            servicesModal.style.display = ""
+        }
     })
 }
 
