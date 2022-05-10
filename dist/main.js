@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modal */ \"./src/modules/modal.js\");\n\r\n\r\n(0,_modules_modal__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\n\n//# sourceURL=webpack://js-diplom/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modal */ \"./src/modules/modal.js\");\n/* harmony import */ var _modules_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/scroll */ \"./src/modules/scroll.js\");\n\r\n\r\n\r\n(0,_modules_modal__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\r\n;(0,_modules_scroll__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\n\n//# sourceURL=webpack://js-diplom/./src/index.js?");
 
 /***/ }),
 
@@ -27,6 +27,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst modal = () => {\r\n    const headerModal = document.querySelector('.header-modal')\r\n    const serviceModal = document.querySelector('.services-modal')\r\n    const overlay = document.querySelector('.overlay')\r\n\r\n    const close = document.querySelectorAll('[title=\"Close\"]')\r\n    const fancy = document.querySelectorAll('.fancyboxModal')\r\n\r\n    fancy.forEach(btn => {\r\n        btn.addEventListener('click', (e) => {\r\n            if (btn.hash === '#callback') {\r\n                headerModal.style.display = 'block'\r\n                overlay.style.display = 'block'\r\n            } else if (btn.hash === '#application') {\r\n                serviceModal.style.display = 'block'\r\n                overlay.style.display = 'block'\r\n            }\r\n        })\r\n    })\r\n    close.forEach(btn => {\r\n        btn.addEventListener('click', () => {\r\n            headerModal.style.display = ''\r\n            overlay.style.display = ''\r\n            serviceModal.style.display = ''\r\n        })\r\n    })\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);\n\n//# sourceURL=webpack://js-diplom/./src/modules/modal.js?");
+
+/***/ }),
+
+/***/ "./src/modules/scroll.js":
+/*!*******************************!*\
+  !*** ./src/modules/scroll.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst scroll = () => {\r\n    const scrollUp = document.querySelector('.smooth-scroll__img')\r\n\r\n    scrollUp.style.cursor = 'pointer'\r\n\r\n    window.addEventListener('scroll', () => {\r\n        if (window.scrollY > 650) {\r\n            scrollUp.style.transition = \".5s\"\r\n            scrollUp.style.opacity = \"1\"\r\n        } else {\r\n            scrollUp.style.transition = \".5s\"\r\n            scrollUp.style.opacity = \"0\" \r\n        }\r\n    })\r\n    \r\n    document.addEventListener('click', (e) => {\r\n        if (e.target.closest('.smooth-scroll__img')) {\r\n            e.preventDefault()\r\n            const anchor = document.getElementById('header')\r\n            anchor.scrollIntoView({block: \"start\", behavior: \"smooth\"});\r\n        }\r\n    })\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (scroll);\n\n//# sourceURL=webpack://js-diplom/./src/modules/scroll.js?");
 
 /***/ })
 
