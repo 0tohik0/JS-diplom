@@ -12,11 +12,9 @@ const calculator = () => {
 
         let reusltValue = 0
 
-
         if(glass.value == "--") {
             glassValue = 1
         }
-
 
         if (balcony.value && square.value) {
             reusltValue = Math.round(balconyValue * glassValue * squareValue)
