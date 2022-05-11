@@ -1,20 +1,23 @@
-import modal from './modules/modal'
-import scroll from './modules/scroll'
-import timer from './modules/timer'
-import calculator from './modules/calculator'
-import modalPhoto from './modules/modalPhoto'
-import modalServices from './modules/modalServices'
-import sendingForm from './modules/sendingForm'
-import validateForm from './modules/validateForm'
+import modal from "./modules/modal"
+import slider from "./modules/slider"
+import scroll from "./modules/smoothScrollBtn"
+import timer from "./modules/timer"
+import burger from "./modules/burger"
+// import formValidate from "./modules/formValidate"
+import sendForm from "./modules/sendForm"
+import docsModal from "./modules/docsModal"
+import calculator from "./modules/calculator"
+import secondSlider from "./modules/secondSlider"
 
 modal()
+slider()
+secondSlider()
 scroll()
-timer('25 may 2022')
+burger()
+// formValidate()
+timer('15 may 2022')
+docsModal()
 calculator()
-modalPhoto()
-modalServices()
-sendingForm()
-validateForm()
 
 const forms = document.querySelectorAll('form')
 forms.forEach((form, index) => {
@@ -22,7 +25,7 @@ forms.forEach((form, index) => {
         e.preventDefault()
         form.id = `form${index}`
         
-        sendingForm({
+        sendForm({
             formId: `form${index}`,
             someElem: [
                 {
